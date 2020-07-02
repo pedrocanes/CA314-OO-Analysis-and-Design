@@ -1,11 +1,13 @@
 #Assignment for CA314 Object Oriented Design: Whist Game
 Multiplayer using sockets
 
-**Members:**
--Pedro Canes
--Santiago de Arribas de Renedo
--Vilandas Sukutis
--Stephen Stephanov
+**Year 3: 2018/2019**
+
+**Members:**<br />
+-Pedro Canes<br />
+-Santiago de Arribas de Renedo<br />
+-Vilandas Sukutis<br />
+-Stephen Stephanov<br />
 -Fiona Tuite
 
 Showcases data transfer via websockets.
