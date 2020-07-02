@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<link rel="stylesheet" type="text/css" href="./css/gameWindow.css">
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet"> 
+	<title>The Greatest Game Of Whist</title>
+
+</head>
+<body>
+
+<div class="container" style="position: relative;">
+
+	<!-- <h1>The Greatest Game Of Whist </h1> -->
+	<div class="navigation">
+		<ul class="nav">
+			<li><a href="javascript: leave = 2; leaveGame();">Rules</a></li>
+			<li><div class="active"><a href="javascript: leave = 0; leaveGame();">Home</a></div></li>
+			<li><a href="javascript: leave = 1; leaveGame();">Credits</a></li>
+		</ul>
+	</div>
+
+	<div id="darkBox" style="padding: 0; margin: 0; width: 90%; height: 90%; max-height: 100%; max-width: 100%; margin-left: auto; margin-right: auto; left: 0; right: 0; top: 0, bottom: 0; background-color: black; opacity: 0.8; display: none; position: absolute; z-index: 2"></div>
+
+	<div id="warningBox" style="padding: 0; margin: 0; width: 50%; height: 50%; max-height: 50%; max-width: 50%; margin-left: auto; margin-right: auto; left: 0; right: 0; top: 23%; bottom: 0; background-color: white; display: none; position: absolute; z-index: 3; box-shadow: inset 0px 0px 15px rgba(0,0,0,1); background-size: 100% 100%; background-repeat: no-repeat; overflow: auto; "></div>
+
+	<img src="./images/ui/yesButton.png" id="yesButton" onmouseover="this.src='./images/ui/yesButtonHover.png'" onmouseout="this.src='./images/ui/yesButton.png'" onclick="let yes = 1; leaveFin()" style=" margin: 0; padding: 0; position: absolute; top: 50%; left: 28%; -moz-user-select: none; display: none; z-index: 4; ">
+
+	<img src="./images/ui/noButton.png" id="noButton" onmouseover="this.src='./images/ui/noButtonHover.png'" onmouseout="this.src='./images/ui/noButton.png'" onclick="errorBoxClose();" style=" margin: 0; padding: 0; position: absolute; top: 50%; left: 55.5%; -moz-user-select: none; display: none; z-index: 4; ">
+
+
+	<div class="content" style="position: relative; z-index: 1">
+			<form id="nameForm">
+				<input type="text" id="textField" name="" maxlength=10 style=" position: absolute; top: 55.5%; left: 20%;"></form>
+			</form>
+		  <canvas id="gameWindow"></canvas>
+
+		<img src="./images/ui/enterButton.png" onmouseover="this.src='./images/ui/enterButtonHover.png'" onmouseout="this.src='./images/ui/enterButton.png'" id="enterButton" onclick="enterButton()" style=" margin: 0; padding: 0; position: absolute; top: 70%; left: 38%; -moz-user-select: none;">
+		
+		<img src="./images/ui/joinButton.png" onmouseover="this.src='./images/ui/joinButtonHover.png'" onmouseout="this.src='./images/ui/joinButton.png'" id="joinButton1" onclick="lobbySetUp()" style=" margin: 0; padding: 0; position: absolute; top: 70%; left: 6.5%; -moz-user-select: none; display: none;">
+
+		<img src="./images/ui/joinButton.png" onmouseover="this.src='./images/ui/joinButtonHover.png'" onmouseout="this.src='./images/ui/joinButton.png'" id="joinButton2" onclick="lobbySetUp()" style=" margin: 0; padding: 0; position: absolute; top: 70%; left: 71.5%; -moz-user-select: none; display: none;">
+
+
+			<form id ='lobbyForm'>
+				<input type="text" id="player1" name="" maxlength=10 disabled style=" position: absolute; text-align: center;top: 36.5%; left: 3.5%; display:none;"></form>
+				<input type="text" id="player2" name="" maxlength=10 disabled style=" position: absolute; text-align: center; top: 51.5%; left: 3.5%;display:none;"></form>
+				<input type="text" id="player3" name="" maxlength=10 disabled style=" position: absolute; text-align: center; top: 36.5%; left: 68.5%;display:none;"></form>
+				<input type="text" id="player4" name="" maxlength=10 disabled style=" position: absolute; text-align: center; top: 51.5%; left: 68.5%;display:none;"></form>
+			</form>
+
+		</div>
+
+	</div>
+</div>
+
+</body>
+ <script src="./js/start.js"></script> 
+ <script src="./js/lobby.js"></script>
+
+<script> 
+
+		var input = document.getElementById("nameForm");
+		input.addEventListener("keydown", function(event) {
+	  	event.preventDefault();
+	  	if (event.keyCode === 13) {
+	  		enterButton();
+	   
+	  }
+	});
+
+	function errorBoxOpen(){
+		document.getElementById("warningBox").style.backgroundImage = "url('./images/mainUi/warningBox.png')";
+		document.getElementById("darkBox").style.display = "block";		
+		document.getElementById("warningBox").style.display = "block";
+		document.getElementById("yesButton").style.width = "16%";
+		document.getElementById("yesButton").style.height = "12%";
+		document.getElementById("yesButton").style.display = "block";		
+		document.getElementById("noButton").style.width = "16%";
+		document.getElementById("noButton").style.height = "12%";
+		document.getElementById("noButton").style.display = "block";
+	}
+	
+
+	function errorBoxClose(){
+		document.getElementById("darkBox").style.display = "none";	
+		document.getElementById("warningBox").style.display = "none";
+		document.getElementById("yesButton").style.display = "none";	
+		document.getElementById("noButton").style.display = "none";		
+	}
+
+	function leaveGame(){
+		if (inLobby === 0){		
+			errorBoxOpen();		
+	}
+		else{
+			return;
+		}
+
+
+	}
+
+	function leaveFin(){
+		if(leave == 0){
+			window.location.href="";
+		}
+		if(leave == 1){
+			window.location.href="#";//Credits
+		}
+		if(leave == 2){
+			window.location.href="#";//Rules
+		}
+	}
+
+	
+
+
+	
+
+	
+
+
+
+ </script>
+
+</html>

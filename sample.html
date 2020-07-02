@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>poqiwe</title>
+</head>
+<script>
+//for testing node off of DCU LAN - CAN BE SET UP TO WORK GLOBALLY
+let socket = new WebSocket("ws://136.206.17.109:12000")
+
+socket.onopen = () => console.log("Connection opened")
+
+
+socket.onmessage = function(event)
+{
+	//console.log("A message was received")
+	var data = JSON.parse(event.data)
+	console.log(data)	
+
+}
+
+socket.onclose = function(){
+	document.body.innerHTML = "<font size=50px color=red>Disconnected</font>\n<marquee behavior=scroll direction=\"left\" scrollamount=\"10\" style=\"color:purple;font-family:Comic Sans MS;\">Oh no, the server is kreshing</marquee>"
+}
+
+function send(input_box){
+	socket.send(JSON.stringify({message: input_box.value}))
+	input_box.value = ""
+}
+
+window.onload = function(){
+	let msg_box = document.getElementById("msg2server")
+	msg_box.onkeydown = function(event)
+	{
+		if(event.keyCode == 13)
+		{
+			send(msg_box)
+		}
+	}
+}
+</script>
+
+  <body>
+
+  <marquee>[0_w]</marquee>
+  <input type="text" id="msg2server" value=""/>
+  
+  </body>
+</html>

@@ -1,0 +1,27 @@
+#gameWindow {
+	height: 100%;
+	width: 100%;
+	background-image: url("../images/mainUi/landingPage.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	box-shadow: 0px 3px 5px rgba(0,0,0,.3);
+	display: block;
+	overflow: auto;
+	padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    display: block;
+
+}
+#enterButton:hover {
+
+}
+
+#textField, #player1, #player2, #player3, #player4{
+	background-color: rgba(0,0,0,0);
+	border: none;
+	font-size: 50px;
+	text-align: center;
+}
